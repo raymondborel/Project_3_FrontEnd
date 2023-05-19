@@ -10,16 +10,15 @@ import RestaurantsIndex from "./pages/RestaurantsIndex";
 function App() {
   return (
     <div className="App">
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/restaurants">
-          <Route path="" element={<RestaurntsIndex />} />
-          <Route path=":restaurantId" element={<RestaurntsShow />} />
-          {/* <Header /> */}
-          <p>Hello World</p>
-          {/* <Footer /> */}
+          <Route path='' element={<RestaurantsIndex />} />
+          <Route path=":restaurantId" element={<RestaurantsShow />} />
         </Route>
       </Routes>
+      <Footer />
     </div>
   );
 }
