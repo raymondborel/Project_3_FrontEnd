@@ -5,7 +5,7 @@ function Home() {
 
   async function fetchRecommendations() {
     try {
-      let myRecommendations = await fetch("http://localhost:2000/");
+      let myRecommendations = await fetch("http://localhost:4000/recommendations");
       myRecommendations = await myRecommendations.json();
       console.log(myRecommendations);
       setRecommendations(myRecommendations);
@@ -19,6 +19,7 @@ function Home() {
   }, []);
 
 if(!recommendations) return <h2>Loading...</h2>
+
 else return (
     <>
       {recommendations.map((recommendation, idx) => {
