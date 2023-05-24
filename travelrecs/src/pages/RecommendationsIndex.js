@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+
 
 function RecommendationsIndex() {
   const [recommendations, setRecommendations] = useState([]);
@@ -29,11 +31,13 @@ function RecommendationsIndex() {
         {arr.map((recommendation, idx) => {
           return (
             <div key={idx}>
+                <Link to= {`/recomendations/${recommendation._id}`}>
               <h2>{recommendation.name}</h2>
-              {/* <h2>{recommendation.rating}</h2>
+                </Link>
+              <h2>{recommendation.rating}</h2>
               <h2>{recommendation.review_count}</h2>
               <h2>{recommendation.image_url}</h2>
-              <h2>{recommendation.url}</h2> */}
+              <h2>{recommendation.url}</h2>
 
               <hr />
             </div>
