@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/recommendations">
           <Route path='' element={<RecommendationsIndex />} />
-          <Route path=":recommendationsId" element={<RecommendationsShow />} />
+          <Route path=":recommendationId" element={<RecommendationsShow />} />
         </Route>
       </Routes>
       <Footer />
