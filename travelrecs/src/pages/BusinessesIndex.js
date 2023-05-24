@@ -46,7 +46,11 @@ function BusinessesIndex() {
                                 <Link to={business.url}>Yelp Page</Link>
                                 <br></br>
                                 <br></br>
-                                <button type="button">Add to List</button>
+                                <form onSubmit={handleSubmit}>
+                                    <input type="text" name="name" placeholder={business.name} onChange={handleChange}/>
+                                    <input type="text" name="rating" placeholder={business.rating} onChange={handleChange}/>
+                                    <button>Add to List</button>
+                                </form>
                                 <hr />
                         </div>
                     )
@@ -54,6 +58,14 @@ function BusinessesIndex() {
             </>
         )
     }
+
+    // function addBusiness(business) {
+    //     setBusinessListAdd({
+    //         name: business.name,
+    //         rating: business.rating
+    //     });
+        
+    // }
 
     // async function addToList(business) {
     //     try {
@@ -78,7 +90,7 @@ function BusinessesIndex() {
         }))
     }
 
-    async function handleSubmit(e, business) {
+    async function handleSubmit(e) {
         try {
             e.preventDefault();
             await fetch('http://localhost:4000/recommendations', {
@@ -96,13 +108,6 @@ function BusinessesIndex() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <label>Name: </label>
-                <input type="text" name="name" onChange={handleChange}/>
-                <label>Rating: </label>
-                <input type="text" name="rating" onChange={handleChange}/>
-                <button>Submit</button>
-            </form>
             {businesses.length ? loaded(businesses) : <h2>Loading...</h2>}
         </>
     );
