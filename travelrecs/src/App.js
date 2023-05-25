@@ -6,10 +6,11 @@ import Home from "./pages/Home";
 import RecommendationsShow from "./pages/RecommendationsShow";
 import RecommendationsIndex from "./pages/RecommendationsIndex";
 import BusinessesIndex from "./pages/BusinessesIndex";
-import BusinessesShow from "./pages/BusinessesShow";
+import BusinessShow from "./pages/BusinessShow";
 
 
 function App() {
+  
   return (
     <div className="App">
       <Header />
@@ -21,7 +22,7 @@ function App() {
         </Route>
         <Route path="/businesses">
           <Route path='' element={<BusinessesIndex />} />
-          <Route path=":businessesId" element={<BusinessesShow />} />
+          <Route path=":businessId" element={<BusinessShow />} />
         </Route>
       </Routes>
       <Footer />
