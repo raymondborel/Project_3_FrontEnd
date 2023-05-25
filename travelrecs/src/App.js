@@ -13,6 +13,7 @@ import RestaurantShow from "./pages/RestaurantShow";
 
 function App() {
   const [ restaurants, setRestaurants ] = useState([]);
+  const [ recommendations, setRecommendations ] = useState([]);
 
   useEffect(() => {
     const fetchRestaurants = async() => {
@@ -27,6 +28,20 @@ function App() {
     fetchRestaurants();
   }, []);
 
+  useEffect(() => {
+  const fetchRecommendations = async() => {
+    try{
+      let myRecommendations = await fetch("http://localhost:4000/recommendations");
+      myRecommendations = await myRecommendations.json();
+      setRecommendations(myRecommendations);
+    } catch(err) {
+      console.log(err);
+    }
+  }
+  fetchRecommendations();
+}, []);
+
+
   return (
     <div className="App">
       <Header />
@@ -38,7 +53,7 @@ function App() {
         </Route>
         <Route path="/restaurants">
           <Route path='' element={<RestaurantIndex restaurants={restaurants} />} />
-          <Route path=":restaurantId" element={<RestaurantShow />} />
+          <Route path=":restaurantId" element={<RestaurantShow recommendations={recommendations} />} />
         </Route>
       </Routes>
       <Footer />

@@ -108,12 +108,14 @@ function RestaurantIndex(props) {
                         <div key={idx}>
                                 <Link to={`/restaurants/${restaurant._id}`}>
                                     <h2>{restaurant.name}</h2>
+                                    <img src={restaurant.image_url} alt={restaurant.name} width="300px" height="300px"/>
                                 </Link>
                                 <h3>Yelp Rating ({restaurant.review_count} reviews): {restaurant.rating} ⭐</h3>
                                 <h3>{restaurant.location.address1}, {restaurant.location.city}, {restaurant.location.state} {restaurant.location.zip_code}</h3>
                                 <Link to={restaurant.url}>Yelp Page</Link>
                                 <br></br>
                                 <br></br>
+                                <button>Add to List</button>
                                 {/* <form onSubmit={handleSubmit}>
                                     <input type="text" name="name" placeholder={restaurant.name} onChange={handleChange}/>
                                     <input type="text" name="rating" placeholder={restaurant.rating} onChange={handleChange}/>
