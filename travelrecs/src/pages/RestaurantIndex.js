@@ -21,7 +21,7 @@ function RestaurantIndex(props) {
 
     // async function getRestaurants() {
     //     try {
-    //         let myRestaurants = await fetch("http://localhost:4000/businesses");
+    //         let myRestaurants = await fetch("http://localhost:4000/restaurants");
     //         myRestaurants = await myRestaurants.json();
     //         setRestaurants(myRestaurants);
     //     } catch(err) {
@@ -106,7 +106,7 @@ function RestaurantIndex(props) {
             {props.restaurants.map((restaurant, idx) => {
                     return(
                         <div key={idx}>
-                                <Link to={`/businesses/${restaurant._id}`}>
+                                <Link to={`/restaurants/${restaurant._id}`}>
                                     <h2>{restaurant.name}</h2>
                                 </Link>
                                 <h3>Yelp Rating ({restaurant.review_count} reviews): {restaurant.rating} ⭐</h3>

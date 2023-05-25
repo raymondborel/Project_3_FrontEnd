@@ -9,7 +9,7 @@ function RestaurantShow() {
     
     async function getRestaurant() {
         try {
-            let myRestaurant = await fetch(`http://localhost:4000/businesses/${restaurantId}`);
+            let myRestaurant = await fetch(`http://localhost:4000/restaurants/${restaurantId}`);
             myRestaurant = await myRestaurant.json();
             console.log(myRestaurant);
             setRestaurant(myRestaurant);

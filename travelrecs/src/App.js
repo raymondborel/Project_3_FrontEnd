@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     const fetchRestaurants = async() => {
       try {
-        let myRestaurants = await fetch("http://localhost:4000/businesses");
+        let myRestaurants = await fetch("http://localhost:4000/restaurants");
         myRestaurants = await myRestaurants.json();
         setRestaurants(myRestaurants);
       } catch(err) {
@@ -36,7 +36,7 @@ function App() {
           <Route path='' element={<RecommendationsIndex restaurants={restaurants} />} />
           <Route path=":recommendationId" element={<RecommendationsShow restaurants={restaurants} />} />
         </Route>
-        <Route path="/businesses">
+        <Route path="/restaurants">
           <Route path='' element={<RestaurantIndex restaurants={restaurants} />} />
           <Route path=":restaurantId" element={<RestaurantShow />} />
         </Route>
