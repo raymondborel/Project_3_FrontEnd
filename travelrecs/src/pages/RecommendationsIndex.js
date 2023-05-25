@@ -2,7 +2,9 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 
-function RecommendationsIndex() {
+function RecommendationsIndex(props) {
+  console.log(`This is props from RecommendationsIndex page: ${props.restaurants}`);
+  console.log(props.restaurants);
   const [recommendations, setRecommendations] = useState([]);
 
   const [recommendationsForm, setRecommendationsForm] = useState({
