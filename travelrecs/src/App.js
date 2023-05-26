@@ -13,7 +13,7 @@ import RestaurantShow from "./pages/RestaurantShow";
 
 function App() {
   const [ restaurants, setRestaurants ] = useState([]);
-  const [ recommendations, setRecommendations ] = useState([]);
+  // const [ recommendations, setRecommendations ] = useState([]);
 
   useEffect(() => {
     const fetchRestaurants = async() => {
@@ -28,18 +28,18 @@ function App() {
     fetchRestaurants();
   }, []);
 
-  useEffect(() => {
-  const fetchRecommendations = async() => {
-    try{
-      let myRecommendations = await fetch("http://localhost:4000/recommendations");
-      myRecommendations = await myRecommendations.json();
-      setRecommendations(myRecommendations);
-    } catch(err) {
-      console.log(err);
-    }
-  }
-  fetchRecommendations();
-}, []);
+//   useEffect(() => {
+//   const fetchRecommendations = async() => {
+//     try{
+//       let myRecommendations = await fetch("http://localhost:4000/recommendations");
+//       myRecommendations = await myRecommendations.json();
+//       setRecommendations(myRecommendations);
+//     } catch(err) {
+//       console.log(err);
+//     }
+//   }
+//   fetchRecommendations();
+// }, []);
 
 
   return (
@@ -52,8 +52,8 @@ function App() {
           <Route path=":recommendationId" element={<RecommendationsShow restaurants={restaurants} />} />
         </Route>
         <Route path="/restaurants">
-          <Route path='' element={<RestaurantIndex restaurants={restaurants} />} />
-          <Route path=":restaurantId" element={<RestaurantShow recommendations={recommendations} />} />
+          <Route path='' element={<RestaurantIndex />} />
+          <Route path=":restaurantId" element={<RestaurantShow />} />
         </Route>
       </Routes>
       <Footer />
