@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
 
 function RecommendationsShow() {
   const [recommendation, setRecommendation] = useState(null);
   const { recommendationId } = useParams();
-  console.log(recommendationId);
+//   console.log(recommendationId);
 
   async function getRecommendation() {
     try {
       let myRecommendation = await fetch(
-        `http://localhost:400/recommendation/${recommendationId}`
+        `http://localhost:4000/recommendations/${recommendationId}`
       );
       myRecommendation = await myRecommendation.json();
       setRecommendation(myRecommendation);
@@ -18,16 +17,15 @@ function RecommendationsShow() {
       console.log(err);
     }
   }
-
   function recommendationLoaded() {
     return (
-        <>
-        <h2>Name: {recommendation.title}</h2>
+      <>
+        console.log(recommendation)
+        <h2>Name: {recommendation.name}</h2>
         <h2>Name: {recommendation.rating}</h2>
-        </>
-    )
+      </>
+    );
   }
-
 
   useEffect(() => {
     getRecommendation();
