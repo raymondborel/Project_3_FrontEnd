@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function RestaurantShow(props) {
-    console.log(`This is props for show page: ${props.recommendations}`);
-    console.log(props.recommendations.length);
+function RestaurantShow() {
     const [ restaurant, setRestaurant ] = useState(null);
     const { restaurantId } = useParams();
     
@@ -28,6 +27,17 @@ function RestaurantShow(props) {
                 body: JSON.stringify( {
                     name: restaurant.name,
                     rating: restaurant.rating,
+                    image_url: restaurant.image_url,
+                    review_count: restaurant.review_count,
+                    location: {
+                        address1: restaurant.location.address1,
+                        city: restaurant.location.city,
+                        state: restaurant.location.state,
+                        zip_code: restaurant.location.zip_code
+                    },
+                    url: restaurant.url,
+                    _id: restaurant._id,
+                    phone: restaurant.phone
                 }),
             });
             console.log("Restaurant added to the recommendations list");
@@ -40,7 +50,13 @@ function RestaurantShow(props) {
         return(
             <>
                 <h2>{restaurant.name}</h2>
-                <h3>{restaurant.rating}</h3>
+                <img src={restaurant.image_url} alt={restaurant.name} width="300px" height="300px"/>
+                <h3>Yelp Rating ({restaurant.review_count} reviews): {restaurant.rating} ⭐</h3>
+                <h3>{restaurant.location.address1}, {restaurant.location.city},{" "}{restaurant.location.state} {restaurant.location.zip_code}</h3>
+                <h3>{restaurant.phone}</h3>
+                <Link to={restaurant.url}>Yelp Page</Link>
+                <br></br>
+                <br></br>
                 <button onClick={handleAddToList}>Add to List</button>
             </>
         )
