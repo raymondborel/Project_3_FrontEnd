@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function RestaurantShow(props) {
-    // console.log(`This is props for show page: ${props.recommendations}`);
-    // console.log(props.recommendations.length);
-    // console.log(props.recommendations[2]);
+    console.log(`This is props for show page: ${props.recommendations}`);
+    console.log(props.recommendations.length);
     const [ restaurant, setRestaurant ] = useState(null);
     const { restaurantId } = useParams();
     
@@ -19,12 +18,30 @@ function RestaurantShow(props) {
         }
     }
 
+    async function handleAddToList() {
+        try {
+            await fetch("http://localhost:4000/recommendations", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify( {
+                    name: restaurant.name,
+                    rating: restaurant.rating,
+                }),
+            });
+            console.log("Restaurant added to the recommendations list");
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
     function restaurantLoaded(restaurant) {
         return(
             <>
                 <h2>{restaurant.name}</h2>
                 <h3>{restaurant.rating}</h3>
-                <button>Add to List</button>
+                <button onClick={handleAddToList}>Add to List</button>
             </>
         )
     }
