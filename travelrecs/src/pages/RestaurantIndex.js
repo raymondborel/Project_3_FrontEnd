@@ -6,7 +6,7 @@ function RestaurantIndex() {
 
     async function getRestaurants() {
         try {
-            let myRestaurants = await fetch("http://localhost:4000/restaurants");
+            let myRestaurants = await fetch('http://localhost:4000/restaurants');
             myRestaurants = await myRestaurants.json();
             setRestaurants(myRestaurants);
         } catch(err) {
@@ -20,12 +20,12 @@ function RestaurantIndex() {
 
     function loaded(restaurants) {
         return (
-          <>
+          <div className="indexBg">
             {restaurants.map((restaurant, idx) => {
               return (
                 <div key={idx}>
                   <Link to={`/restaurants/${restaurant._id}`}>
-                    <h2>{restaurant.name}</h2>
+                    <h2 className="text-decoration-none text-darkgray-1">{restaurant.name}</h2>
                     <img src={restaurant.image_url} alt={restaurant.name} width="300px" height="300px"/>
                   </Link>
                   <h3>
@@ -37,7 +37,7 @@ function RestaurantIndex() {
                 </div>
                 );
             })}
-          </>
+          </div>
         );
       }
 
@@ -74,7 +74,7 @@ function RestaurantIndex() {
 
     return (
         <>
-            {restaurants.length ? loaded(restaurants) : <h2>Loading...</h2>}
+            {restaurants.length ? loaded(restaurants) : <h2>Loading..</h2>}
         </>
     );
 }
