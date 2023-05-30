@@ -33,7 +33,7 @@ function RecommendationsIndex(props) {
       {arr.map((recommendation, idx) => {
           return (
             <div key={idx}>
-                <Link to= {`/recomendations/${recommendation._id}`}>
+                <Link to= {`/restaurants/${recommendation._id}`}>
               <h3 className="text-decoration-none">{recommendation.name}</h3>
               <img src={recommendation.image_url} alt={recommendation.name} width="300px" height="300px"/>
                 </Link>
