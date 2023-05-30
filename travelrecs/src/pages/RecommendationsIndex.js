@@ -29,23 +29,22 @@ function RecommendationsIndex(props) {
 
   function loaded(arr) {
     return (
-      <>
-        {arr.map((recommendation, idx) => {
+      <div className="bgColor">
+      {arr.map((recommendation, idx) => {
           return (
             <div key={idx}>
                 <Link to= {`/recomendations/${recommendation._id}`}>
-              <h2>{recommendation.name}</h2>
+              <h3 className="text-decoration-none">{recommendation.name}</h3>
+              <img src={recommendation.image_url} alt={recommendation.name} width="300px" height="300px"/>
                 </Link>
-              <h2>{recommendation.rating}</h2>
-              <h2>{recommendation.review_count}</h2>
-              <h2>{recommendation.image_url}</h2>
-              <h2>{recommendation.url}</h2>
-
+              <h3>
+                Yelp Rating ({recommendation.review_count} reviews):{" "}{recommendation.rating} ⭐</h3>
+              <button href = {recommendation.url}></button>
               <hr />
             </div>
           );
         })}
-      </>
+      </div>
     );
   }
 
@@ -74,22 +73,25 @@ function RecommendationsIndex(props) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>Name: </label>
+    <div className="formContainer bgColor">
+      <form className="form" onSubmit={handleSubmit}>
+        <label className="text-white">Name: </label>
+        <div className="form-group">
         <input
           type="text"
           name="name"
           onChange={handleChange}
           placeholder="Name"
         />
-        <label>Rating: </label>
+        </div>
+        <label className="text-white">Rating: </label>
         <input
           type="text"
           name="rating"
           onChange={handleChange}
           placeholder="Rating"
         />
-        <label>Image Url: </label>
+        <label className="text-white">Image Url: </label>
         <input
           type="text"
           name="image_url"
@@ -99,6 +101,7 @@ function RecommendationsIndex(props) {
         <button value="submit">Submit</button>
       </form>
       {recommendations.length ? loaded(recommendations) : <h2>Loading...</h2>}
+      </div>
     </>
   );
 }
