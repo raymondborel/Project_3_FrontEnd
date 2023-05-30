@@ -91,10 +91,16 @@
   }
 }
 
-.indexBg {
-  background-color: rgb(69, 61, 61);
-
+.text-opacity {
+  background-color: rgba(0, 0, 0, 0.3);
 }
+
+.bgColor {
+  background-color: rgb(69, 61, 61);
+}
+
+
+
 
 .bgImg {
   background-image: url("https://images.ctfassets.net/bth3mlrehms2/5D89r4pwpt9FyGctr3sOcP/b5d8c3dc072812ed8c3f5381ba290fc9/Nordamerika_USA_San_Francisco_Golden_Gate_Bridge.jpg?w=3863&h=2578&fl=progressive&q=50&fm=jpg");

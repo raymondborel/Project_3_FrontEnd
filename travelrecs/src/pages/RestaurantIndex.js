@@ -20,7 +20,7 @@ function RestaurantIndex() {
 
     function loaded(restaurants) {
         return (
-          <div className="indexBg">
+          <div className="bgColor">
             {restaurants.map((restaurant, idx) => {
               return (
                 <div key={idx}>

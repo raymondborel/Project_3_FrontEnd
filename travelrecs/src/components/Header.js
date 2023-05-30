@@ -67,7 +67,7 @@ const Header = () => {
                 <h1 className="display-5 fw-bolder text-white mb-2">
                 Welcome!
                 </h1>
-                <p className="lead fw-bold text-white bg-gradient-dark mb-4 ">
+                <p className="lead fw-bold text-white text-opacity ">
                 Here is our website where we have a list or restaurants that we love and that we allow our friends to see and add too!
                 </p>
               </div>
