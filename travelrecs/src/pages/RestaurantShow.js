@@ -79,7 +79,7 @@ function RestaurantShow() {
     }
   }
 
-  return restaurant ? restaurantLoaded() : <h2>Loading</h2>;
+  return restaurant ? restaurantLoaded(restaurant) : <h2>Loading</h2>;
 }
 
 export default RestaurantShow;
