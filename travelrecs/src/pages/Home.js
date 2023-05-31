@@ -1,36 +1,18 @@
-import { useState, useEffect } from "react";
+
 
 function Home() {
-  const [recommendations, setRecommendations] = useState(null);
 
-  async function fetchRecommendations() {
-    try {
-      let myRecommendations = await fetch("http://localhost:4000/recommendations");
-      myRecommendations = await myRecommendations.json();
-      console.log(myRecommendations);
-      setRecommendations(myRecommendations);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  useEffect(() => {
-    fetchRecommendations();
-  }, []);
-
-if(!recommendations) return <h2>Loading...</h2>
-
-else return (
-    <>
-      {recommendations.map((recommendation, idx) => {
-        return (
-          <div key={idx}>
-            <h2>{recommendation.name}</h2>
-          </div>
-        );
-      })}
-    </>
+  return (
+    <div className="bgColor container-fluid h-100 d-flex flex-column align-items-center justify-content-center">
+      <h1>Ready to get started?</h1>
+      <div className="d-flex justify-content-center mt-3">
+        <button className="btn  btn-outline-primary btn-lg me-2">See our list!</button>
+        <button className="btn  btn-outline-primary btn-lg">Search for restaurants!</button>
+      </div>
+    </div>
   );
+
 }
+
 
 export default Home;
