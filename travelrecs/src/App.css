@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(77, 185, 199);
+  color: white;
+  text-decoration: none;
+  height: 10vh;
+  font-size: 1.75em;
+}
