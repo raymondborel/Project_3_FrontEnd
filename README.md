@@ -1,18 +1,16 @@
 # Project_3_FrontEnd
-## User Story 
 
-We are creating a trip planner app that will allow users to select a city from the homepage and add to a list of restaurants to check out.
+## Description:
+We are creating a website that will allow users to see list of restaurants in San Francisco that have been recommended by users who have visited the site before. The user will be able to browse through a list of restaurants in the yelp API and add that restaurant to the list of recommended restaurants. On the recommended list page users will be able to create there own restaurant to recommend by entering its required information in the input field. On that page they will also be able to remove and restaurant off of the recommended list.
 
-As a user I will be able to see a list of cities and be able to click into each one of them 
+As a stretch feature we want to be able to have different users sign in and create, read, update and delete restaurants on their own lists. Another stretch feature we would like to add is the ability for users to suggest different lists to each other.
 
-As a user I will be able to to see a
+### Technologies Used:
+React, Json, Bootstrap, Jsx, Node.js
 
-As a users will be able to search through restaurants by location or cuisine using the Yelp API and see reviews to determine whether they want to add them to the list. 
+### Getting Started/Installation Instructions:
+To install fork and clone from our repository https://github.com/raymondborel/Project_3_FrontEnd
 
-As a stretch feature we want to be able to have different users sign in and create, read, update and delete restaurants on their own lists. Another stretch feature we would like to work on is the ability for users to suggest different lists to each other.
-
-### Technologies Used 
-
-React, Json, Bootstrap for styling
+### Contribution Guidelines:
 
 
