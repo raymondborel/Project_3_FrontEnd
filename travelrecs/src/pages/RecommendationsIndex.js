@@ -1,11 +1,8 @@
-import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 //const { recommendationId } = useParams();
 
-
 function RecommendationsIndex(props) {
-  // console.log(`This is props from RecommendationsIndex page: ${props.restaurants}`);
-  // console.log(props.restaurants);
   const [recommendations, setRecommendations] = useState([]);
 
   const [recommendationsForm, setRecommendationsForm] = useState({
@@ -16,7 +13,9 @@ function RecommendationsIndex(props) {
 
   async function getRecommendations() {
     try {
-      let myRecommendations = await fetch("http://localhost:4000/recommendations");
+      let myRecommendations = await fetch(
+        "http://localhost:4000/recommendations"
+      );
       myRecommendations = await myRecommendations.json();
       setRecommendations(myRecommendations);
     } catch (err) {
@@ -31,17 +30,25 @@ function RecommendationsIndex(props) {
   function loaded(arr) {
     return (
       <div className="bgColor">
-      {arr.map((recommendation, idx) => {
+        {arr.map((recommendation, idx) => {
           return (
             <div key={idx}>
-                <Link to= {`/restaurants/${recommendation._id}`}>
-              <h3 className="text-decoration-none">{recommendation.name}</h3>
-              <img src={recommendation.image_url} alt={recommendation.name} width="300px" height="300px"/>
-                </Link>
+              <Link to={`/restaurants/${recommendation._id}`}>
+                <h3 className="text-decoration-none">{recommendation.name}</h3>
+                <img
+                  src={recommendation.image_url}
+                  alt={recommendation.name}
+                  width="300px"
+                  height="300px"
+                />
+              </Link>
               <h3>
-                Yelp Rating ({recommendation.review_count} reviews):{" "}{recommendation.rating} ⭐</h3>
-              {/* <button href = {recommendation.url}></button> */}
-              <button onClick={() => handleDeleteFromList(recommendation._id)}>Delete from List</button>
+                Yelp Rating ({recommendation.review_count} reviews):{" "}
+                {recommendation.rating} ⭐
+              </h3>
+              <button onClick={() => handleDeleteFromList(recommendation._id)}>
+                Delete from List
+              </button>
               <hr />
             </div>
           );
@@ -58,66 +65,68 @@ function RecommendationsIndex(props) {
   }
 
   async function handleSubmit(e) {
-      try {
-        e.preventDefault();
-        await fetch("http://localhost:4000/recommendations" , {
-            method: "POST",
-            headers: {
-                "Content-Type" : "application/json"
-            },
-            body: JSON.stringify(recommendationsForm)
-        })
-        e.target.reset();
-    } catch(err) {
-        console.log(err);
+    try {
+      e.preventDefault();
+      await fetch("http://localhost:4000/recommendations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(recommendationsForm),
+      });
+      e.target.reset();
+    } catch (err) {
+      console.log(err);
     }
   }
 
   async function handleDeleteFromList(recommendationId) {
     try {
-        await fetch(`http://localhost:4000/recommendations/${recommendationId}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        const updatedRecommendations = recommendations.filter(recommendation => recommendation._id !== recommendationId);
-        setRecommendations(updatedRecommendations);
-    } catch(err) {
-        console.log(err);
+      await fetch(`http://localhost:4000/recommendations/${recommendationId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const updatedRecommendations = recommendations.filter(
+        (recommendation) => recommendation._id !== recommendationId
+      );
+      setRecommendations(updatedRecommendations);
+    } catch (err) {
+      console.log(err);
     }
-}
+  }
 
   return (
     <>
-    <div className="formContainer bgColor">
-      <form className="form" onSubmit={handleSubmit}>
-        <label className="text-white">Name: </label>
-        <div className="form-group">
-        <input
-          type="text"
-          name="name"
-          onChange={handleChange}
-          placeholder="Name"
-        />
-        </div>
-        <label className="text-white">Rating: </label>
-        <input
-          type="text"
-          name="rating"
-          onChange={handleChange}
-          placeholder="Rating"
-        />
-        <label className="text-white">Image Url: </label>
-        <input
-          type="text"
-          name="image_url"
-          onChange={handleChange}
-          placeholder="Image Url"
-        />
-        <button value="submit">Submit</button>
-      </form>
-      {recommendations.length ? loaded(recommendations) : <h2>Loading...</h2>}
+      <div className="container-fluid bgColor">
+        <form className="form" onSubmit={handleSubmit}>
+          <label className="text-white">Name: </label>
+          <div className="form-group">
+            <input
+              type="text"
+              name="name"
+              onChange={handleChange}
+              placeholder="Name"
+            />
+          </div>
+          <label className="text-white">Rating: </label>
+          <input
+            type="text"
+            name="rating"
+            onChange={handleChange}
+            placeholder="Rating"
+          />
+          <label className="text-white">Image Url: </label>
+          <input
+            type="text"
+            name="image_url"
+            onChange={handleChange}
+            placeholder="Image Url"
+          />
+          <button value="submit">Submit</button>
+        </form>
+        {recommendations.length ? loaded(recommendations) : <h2>Loading...</h2>}
       </div>
     </>
   );

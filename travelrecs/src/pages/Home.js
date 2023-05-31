@@ -1,36 +1,28 @@
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
-  const [recommendations, setRecommendations] = useState(null);
 
-  async function fetchRecommendations() {
-    try {
-      let myRecommendations = await fetch("http://localhost:4000/recommendations");
-      myRecommendations = await myRecommendations.json();
-      console.log(myRecommendations);
-      setRecommendations(myRecommendations);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  useEffect(() => {
-    fetchRecommendations();
-  }, []);
-
-if(!recommendations) return <h2>Loading...</h2>
-
-else return (
+  return (
     <>
-      {recommendations.map((recommendation, idx) => {
-        return (
-          <div key={idx}>
-            <h2>{recommendation.name}</h2>
-          </div>
-        );
-      })}
+    <div className="bgColor container-fluid h-100 d-flex flex-column align-items-center justify-content-center min-vh-100">
+      <h1>Ready to get started?</h1>
+      <div className="d-flex justify-content-center mt-3">
+      <Link to= {'/recommendations'}>
+        <button className=" btn  btn-outline-primary btn-lg me-2">See our list!</button>
+      </Link>
+      <Link to={'/restaurants'}>
+        <button className=" btn  btn-outline-primary btn-lg">Search for restaurants!</button>
+      </Link>
+      </div>
+      <div>
+        <div className="container-fluid h-100 mb-4"></div>
+      </div>
+    </div>
+
     </>
   );
+
 }
+
 
 export default Home;

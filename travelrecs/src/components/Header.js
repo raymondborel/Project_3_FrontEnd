@@ -68,7 +68,7 @@ const Header = () => {
                 Welcome!
                 </h1>
                 <p className="lead fw-bold text-white text-opacity ">
-                Here is our website where we have a list or restaurants that we love and that we allow our friends to see and add too!
+                Here is our website showing a list of our recommended restaurants that people can add to!
                 </p>
               </div>
             </div>
