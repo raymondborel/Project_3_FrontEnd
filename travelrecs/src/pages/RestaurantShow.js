@@ -29,6 +29,11 @@ function RestaurantShow() {
           width="300px"
           height="300px"
         />
+        <h3>Categories: |{restaurant.categories.map((categories, idx) => {
+          return (
+            <> {categories.title} |</>
+          );
+        })}</h3>
         <h3>
           Yelp Rating ({restaurant.review_count} reviews): {restaurant.rating}{" "}
           ⭐
@@ -50,7 +55,7 @@ function RestaurantShow() {
     getRestaurant();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   async function handleAddToList() {
     try {
       await fetch("http://localhost:4000/recommendations", {
@@ -69,6 +74,10 @@ function RestaurantShow() {
             state: restaurant.location.state,
             zip_code: restaurant.location.zip_code,
           },
+          categories: [{
+            alias: restaurant.categories.alias,
+            title: restaurant.categories.title
+          }],
           url: restaurant.url,
           _id: restaurant._id,
           phone: restaurant.phone,
