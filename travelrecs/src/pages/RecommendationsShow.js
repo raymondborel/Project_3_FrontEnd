@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 function RecommendationsShow() {
   const [recommendation, setRecommendation] = useState(null);
   const { recommendationId } = useParams();
-//   console.log(recommendationId);
 
   async function getRecommendation() {
     try {
