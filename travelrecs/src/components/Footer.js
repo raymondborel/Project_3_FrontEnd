@@ -1,7 +1,11 @@
 function Footer () {
     return(
-        <h2>😎😎 Made by Larry & Ray 😎😎</h2>
-    )
+        <footer className="fixed-bottom bg-secondary">
+          <div className="container text-center py-3">
+            <p className="mb-0">Made by Larry and Ray</p>
+          </div>
+        </footer>
+      );
 }
 
 export default Footer;
