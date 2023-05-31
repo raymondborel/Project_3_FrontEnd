@@ -50,6 +50,7 @@ function RestaurantShow() {
     getRestaurant();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  
   async function handleAddToList() {
     try {
       await fetch("http://localhost:4000/recommendations", {

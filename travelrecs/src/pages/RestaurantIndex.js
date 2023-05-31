@@ -16,6 +16,8 @@ function RestaurantIndex() {
 
     useEffect(() => {
         getRestaurants();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+
     }, []);
 
     function loaded(restaurants) {

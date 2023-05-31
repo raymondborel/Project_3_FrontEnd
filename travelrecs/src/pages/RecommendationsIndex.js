@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+//const { recommendationId } = useParams();
 
 
 function RecommendationsIndex(props) {
@@ -39,7 +40,8 @@ function RecommendationsIndex(props) {
                 </Link>
               <h3>
                 Yelp Rating ({recommendation.review_count} reviews):{" "}{recommendation.rating} ⭐</h3>
-              <button href = {recommendation.url}></button>
+              {/* <button href = {recommendation.url}></button> */}
+              <button onClick={() => handleDeleteFromList(recommendation._id)}>Delete from List</button>
               <hr />
             </div>
           );
@@ -70,6 +72,21 @@ function RecommendationsIndex(props) {
         console.log(err);
     }
   }
+
+  async function handleDeleteFromList(recommendationId) {
+    try {
+        await fetch(`http://localhost:4000/recommendations/${recommendationId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const updatedRecommendations = recommendations.filter(recommendation => recommendation._id !== recommendationId);
+        setRecommendations(updatedRecommendations);
+    } catch(err) {
+        console.log(err);
+    }
+}
 
   return (
     <>
