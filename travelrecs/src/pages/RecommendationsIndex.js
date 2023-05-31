@@ -127,6 +127,7 @@ function RecommendationsIndex(props) {
           />
           <button value="submit">Submit</button>
         </form>
+        <br></br>
         </div>
         {recommendations.length ? loaded(recommendations) : <h2>Loading...</h2>}
       </div>
