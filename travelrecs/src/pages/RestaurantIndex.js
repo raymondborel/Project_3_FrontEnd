@@ -16,13 +16,25 @@ function RestaurantIndex() {
 
     useEffect(() => {
         getRestaurants();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+     // eslint-disable-next-line react-hooks/exhaustive-deps
 
     }, []);
 
     function loaded(restaurants) {
+        const uniqueCategories = Array.from(new Set(restaurants.flatMap((restaurant) => restaurant.categories.map((category) => category.title))));
+        
         return (
           <div className="bgColor">
+            <h3>Categories: </h3>
+            <h4>{uniqueCategories.map((categoryTitle, idx) => {
+                return(
+                        <span key={idx}>
+                            <Link onClick={() => handleFilterByCategory(categoryTitle)}>{categoryTitle}</Link>
+                            <> </>
+                        </span>
+                    )}
+                )
+            }</h4>
             {restaurants.map((restaurant, idx) => {
               return (
                 <div key={idx}>
@@ -30,6 +42,14 @@ function RestaurantIndex() {
                     <h2 className="text-decoration-none text-darkgray-1">{restaurant.name}</h2>
                     <img src={restaurant.image_url} alt={restaurant.name} width="300px" height="300px"/>
                   </Link>
+                  <h3>Categories:{restaurant.categories.map((categories, idx) => {
+                        return (
+                            <span key={idx}>
+                                <Link onClick={() => handleFilterByCategory(categories.title)}>{categories.title}</Link>
+                                <> </>
+                            </span>
+                        );
+                  })}</h3>
                   <h3>
                     Yelp Rating ({restaurant.review_count} reviews):{" "}{restaurant.rating} ⭐</h3>
                   <button onClick={() => handleAddToList(restaurant)}>Add to List</button>
@@ -42,6 +62,16 @@ function RestaurantIndex() {
           </div>
         );
       }
+
+    async function handleFilterByCategory(categoryTitle) {
+        try {
+            console.log(categoryTitle);
+            const filteredRestaurants = restaurants.filter((restaurant) => restaurant.categories.some((category) => category.title === categoryTitle));
+            setRestaurants(filteredRestaurants);  
+        } catch(err) {
+            console.log(err);
+        }
+    }
 
     async function handleAddToList(restaurant) {
         try {
@@ -62,6 +92,10 @@ function RestaurantIndex() {
                         state: restaurant.location.state,
                         zip_code: restaurant.location.zip_code
                     },
+                    categories: [{
+                        alias: restaurant.categories.alias,
+                        title: restaurant.categories.title
+                    }],
                     url: restaurant.url,
                     _id: restaurant._id,
                     phone: restaurant.phone
