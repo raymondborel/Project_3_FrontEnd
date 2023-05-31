@@ -21,7 +21,7 @@ function RestaurantShow() {
 
   function restaurantLoaded(restaurant) {
     return (
-      <div>
+      <div className="bgColor">
         <h2>{restaurant.name}</h2>
         <img
           src={restaurant.image_url}

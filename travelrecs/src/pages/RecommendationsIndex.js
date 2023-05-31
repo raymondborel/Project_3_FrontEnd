@@ -34,7 +34,7 @@ function RecommendationsIndex(props) {
           return (
             <div key={idx}>
               <Link to={`/restaurants/${recommendation._id}`}>
-                <h3 className="text-decoration-none">{recommendation.name}</h3>
+                <h3 className="text-decoration-none ">{recommendation.name}</h3>
                 <img
                   src={recommendation.image_url}
                   alt={recommendation.name}
@@ -99,7 +99,8 @@ function RecommendationsIndex(props) {
 
   return (
     <>
-      <div className="container-fluid bgColor">
+      <div className="container-fluid bgColor ">
+        <div className="justify-content-center">
         <form className="form" onSubmit={handleSubmit}>
           <label className="text-white">Name: </label>
           <div className="form-group">
@@ -126,6 +127,7 @@ function RecommendationsIndex(props) {
           />
           <button value="submit">Submit</button>
         </form>
+        </div>
         {recommendations.length ? loaded(recommendations) : <h2>Loading...</h2>}
       </div>
     </>
